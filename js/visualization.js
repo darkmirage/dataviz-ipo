@@ -28,7 +28,7 @@ class Visualization {
 
   fetchData() {
     this.dataLoading = new Promise((resolve, reject) => {
-      d3.csv('../csv/ipos.csv', (data) => {
+      d3.csv('./csv/ipos.csv', (data) => {
         data.forEach((d) => {
           for (var col in d) { d[col] = Number(d[col]); }
         });
