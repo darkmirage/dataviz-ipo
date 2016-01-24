@@ -1,0 +1,151 @@
+/* Layout */
+
+body {
+  font-size: 12px;
+}
+
+.visualization-container {
+  height: 500px;
+  margin-top: 20px;
+}
+
+.visualization-sidebar {
+  padding: 10px;
+}
+
+.visualization-description {
+  padding: 15px;
+  margin-top: 10px;
+  font-size: 14px;
+  display: none;
+}
+
+.visualization-description.active {
+  display: block;
+}
+
+.visualization-description p {
+  line-height: 24px;
+}
+
+.visualization-chart {
+  height: 500px;
+}
+
+.nav-pills > li.active > a {
+  background-color: #ed403a !important;
+}
+
+.nav-pills > li > a {
+  color: #dd302a;
+}
+
+a {
+  color: #ed403a;
+}
+
+a.button-year {
+  color: #ed403a;
+  cursor: default;
+}
+
+/* Axes */
+
+.axis {
+  fill: #777;
+  transition-duration: 0.2s;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #777;
+  shape-rendering: crispEdges;
+}
+
+/* Lines */
+
+.line {
+  fill: none;
+  stroke-width: 2;
+  stroke: #000;
+}
+
+.line-other {
+  stroke: #ccc;
+}
+
+.line-tech {
+  stroke: #ed403a;
+}
+
+.line-tech-ipos {
+  stroke: #698cbb;
+}
+
+/* Legends */
+.legends {
+  list-style-type: none;
+  padding: 0;
+  font-size: 11px;
+  text-align: right;
+  margin-bottom: 30px;
+}
+
+.legends li {
+  margin-bottom: 6px;
+}
+
+.legend {
+  width: 30px;
+  height: 14px;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.blue-legend {
+  background-color: #698cbb;
+}
+
+.red-legend {
+  background-color: #ed403a;
+}
+
+.grey-legend {
+  background-color: #ccc;
+}
+
+/* Bars */
+
+.bar-total,
+.label-total {
+  fill: #ccc;
+}
+
+.bar-tech,
+.label-tech {
+  fill: #698cbb;
+}
+
+.bar-profitable_tech,
+.label-profitable_tech {
+  fill: #ed403a;
+}
+
+.column .label {
+  font-size: 11px;
+  pointer-events: none;
+}
+
+/* Transitions */
+
+.y-axis,
+.column .label {
+  opacity: 0;
+  transition-duration: 0.15s;
+}
+
+.visualization-chart:hover .y-axis,
+.column:hover .label {
+  opacity: 1.0;
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Tech IPOs</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+  <link href="./css/main.css" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
+  <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script src="./js/main.js"></script>
+</head>
+
+<body>
+  <div class="visualization-container container">
+    <div class="row">
+      <div class="visualization-sidebar col-md-4 col-lg-3">
+        <ul class="nav nav-pills">
+          <li class="active">
+            <a href="#" class="button" data-mode="1">1</a>
+          </li>
+          <li>
+            <a href="#" class="button" data-mode="2">2</a>
+          </li>
+          <li>
+            <a href="#" class="button" data-mode="3">3</a>
+          </li>
+          <li>
+            <a href="#" class="button" data-mode="4">4</a>
+          </li>
+        </ul>
+
+        <div class="visualization-description active" data-mode="1">
+          <ul class="legends">
+            <li>Number of tech IPOs<span class="blue-legend legend"></span></li>
+            <li>Number of other IPOs<span class="grey-legend legend"></span></li>
+          </ul>
+          <p>Number of tech IPOs peaked in <a class="button-year" data-years="[1999]">1999</a>, but total overall number peaked earlier in <a class="button-year" data-years="[1996]">1996</a>.</p>
+
+          <p>Tech IPOs accounted for a third to half of all IPOs in most years, with the exception of <a class="button-year" data-years="[1999, 2000, 2014]">1999, 2000 and 2014</a> when the share was much larger.</p>
+        </div>
+
+        <div class="visualization-description" data-mode="2">
+          <ul class="legends">
+            <li>Percentage of profitable tech IPOs<span class="red-legend legend"></span></li>
+            <li>Percentage of profitable other IPOs<span class="grey-legend legend"></span></li>
+          </ul>
+          <p>The percentage of tech companies that are profitable at the time of their IPO have generally been lower than their non-tech counterparts.</p>
+        </div>
+
+        <div class="visualization-description" data-mode="3">
+          <ul class="legends">
+            <li>Percentage of profitable tech IPOs<span class="red-legend legend"></span></li>
+            <li>Number of tech IPOs<span class="blue-legend legend"></span></li>
+          </ul>
+          <p>The percentage of profitable tech companies at the time of their IPO appear to be roughly inversely related.</p>
+        </div>
+
+        <div class="visualization-description" data-mode="4">
+          <ul class="legends">
+            <li>Number of profitable tech IPOs<span class="red-legend legend"></span></li>
+            <li>Number of non-profitable tech IPOs<span class="blue-legend legend"></span></li>
+            <li>Number of other IPOs<span class="grey-legend legend"></span></li>
+          </ul>
+          <p>Before 2010, the number of profitable tech companies that IPO varied from year to year in a pattern that followed the total number of companies that IPO.</p>
+
+          <p>In particular, the number of profitable tech companies and the total number of IPOs both peaked around <a class="button-year" data-years="[1995, 1996]">1995 and 1996</a>.</p>
+
+          <p>The number of tech IPOs overall was completely detached to the other two figures in <a class="button-year" data-years="[1999, 2000]">1999 and 2000</a>.
+        </div>
+      </div>
+      <div class="visualization-chart col-md-8 col-lg-9">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var viz = new Visualization({
+      element: $('.visualization-chart').get(0),
+    });
+    viz.render();
+
+    var buttonContainers = $('.visualization-sidebar .nav li');
+    var descriptionContainers = $('.visualization-description');
+
+    $('.button').click(function(event) {
+      var button = $(this);
+      var mode = button.data('mode');
+      viz.setMode(mode);
+      buttonContainers.removeClass('active');
+      descriptionContainers.removeClass('active');
+      button.parent().addClass('active');
+      $('.visualization-description[data-mode="' + mode + '"]').addClass('active');
+      event.preventDefault();
+    });
+
+    $('.button-year')
+      .mouseover(function() { viz.enableHighlight($(this).data('years')); })
+      .mouseout(() => viz.disableHighlight());
+  </script>
+</body>
+
+</html>
