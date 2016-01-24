@@ -1,7 +1,7 @@
 'use strict';
 
-const LEFT_MARGIN = 30;
-const RIGHT_MARGIN = 30;
+const LEFT_MARGIN = 40;
+const RIGHT_MARGIN = 40;
 const BOTTOM_MARGIN = 30;
 const TOP_MARGIN = 20;
 
@@ -107,6 +107,8 @@ class Visualization {
   getRightAxis() {
     return this.getDefaultAxis()
       .scale(this.getRightScale().range([this.height, 0]))
+      .tickValues(d3.range(0, 1.1, 0.1))
+      .tickFormat(d3.format(",%"))
       .orient('right');
   }
 
@@ -145,7 +147,7 @@ class Visualization {
       .call(this.getBottomAxis());
     svg.select('g.right-axis')
       .attr('transform', 'translate(' + rightOffset + ',' + TOP_MARGIN + ')')
-      .attr('visibility', this.mode !== 1 ? 'visible' : 'hidden')
+      .attr('visibility', this.mode === 2 || this.mode === 3 ? 'visible' : 'hidden')
       .transition()
       .ease('sin-in-out')
       .call(this.getRightAxis());
